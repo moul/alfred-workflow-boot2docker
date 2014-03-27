@@ -28,10 +28,17 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             yield self.item(title='Boot2Docker is in an unknown state',
                             description='Try to run boot2docker in your '
                             'terminal to investigate', ignore=True)
+        elif status == 'notexists':
+            yield self.item(title='init', description='Initialize Boot2Docker',
+                            autocomplete=True, arg='init', match=query)
         elif status == 'running':
             yield self.item(title='stop', description='Stop Boot2Docker',
                             autocomplete=True, arg='stop', match=query)
-        elif status in ('stopped', 'aborted'):
+            yield self.item(title='suspend', description='Suspend Boot2Docker',
+                            autocomplete=True, arg='suspend', match=query)
+            yield self.item(title='restart', description='Restart Boot2Docker',
+                            autocomplete=True, arg='restart', match=query)
+        elif status in ('stopped', 'aborted', 'paused', 'suspended'):
             yield self.item(title='start', description='Start Boot2Docker',
                             autocomplete=True, arg='start', match=query)
 
@@ -43,6 +50,10 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             self.write_text('Starting... you will get notified when done')
         elif query == 'stop':
             self.write_text('Stopping... you will get notified when done')
+        elif query == 'suspend':
+            self.write_text('Suspending... you will get notified when done')
+        elif query == 'restart':
+            self.write_text('Restarting... you will get notified when done')
 
     def do_command_run(self, query=None):
         command = query
@@ -58,6 +69,16 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             self.write_text('An error has occured when starting.\n'
                             'please run boot2docker from command line')
 
+    def do_restart(self, query=None):
+        if self.status == 'restart':
+            return
+        ret = b2d_exec('restart')
+        if ret.find('Started.') > -1:
+            self.write_text('Boot2Docker is started.')
+        else:
+            self.write_text('An error has occured when restarting.\n'
+                            'please run boot2docker from command line')
+
     def do_stop(self, query=None):
         if self.status != 'running':
             return
@@ -69,6 +90,20 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
         else:
             self.write('Error while trying to stop instance')
 
+    def do_suspend(self, query=None):
+        if self.status != 'running':
+            return
+        ret = b2d_exec('suspend')
+        if ret.find('100%') > -1:
+            self.write('Boot2Docker is suspended')
+
+    def do_init(self, query=None):
+        if self.status != 'notexists':
+            return
+        ret = b2d_exec('init')
+        if ret.find('You can now type boot2docker up') > -1:
+            self.write('Boot2Docker is initialized')
+
     @property
     def status(self):
         ret = b2d_exec('status')
@@ -78,6 +113,12 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             return 'stopped'
         elif ret.find('aborted') > -1:
             return 'aborted'
+        elif ret.find('suspended') > -1:
+            return 'suspended'
+        elif ret.find('paused') > -1:
+            return 'paused'
+        elif ret.find('does not exist') > -1:
+            return 'notexists'
         else:
             return 'unknown'
 
@@ -89,6 +130,12 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             self.write_text('Boot2Docker is stopped')
         elif status == 'aborted':
             self.write_text('Boot2Docker is aborted')
+        elif status == 'suspended':
+            self.write_text('Boot2Docker is suspended')
+        elif status == 'paused':
+            self.write_text('Boot2Docker is paused')
+        elif status == 'notexists':
+            self.write_text('Boot2Docker VM does not exist')
         else:
             self.write_text('Boot2Docker is in an unknown state')
 
