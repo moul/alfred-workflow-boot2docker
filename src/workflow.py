@@ -47,13 +47,15 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
 
     def do_command_notify(self, query=None):
         if query == 'start':
-            self.write_text('Starting... you will get notified when done')
+            self.write_text('Starting...\nyou will get notified when done.')
         elif query == 'stop':
-            self.write_text('Stopping... you will get notified when done')
+            self.write_text('Stopping...\nyou will get notified when done.')
         elif query == 'suspend':
-            self.write_text('Suspending... you will get notified when done')
+            self.write_text('Suspending...\nyou will get notified when done.')
         elif query == 'restart':
-            self.write_text('Restarting... you will get notified when done')
+            self.write_text('Restarting...\nyou will get notified when done.')
+        elif query == 'init':
+            self.write_text('Initializing...\nyou will get notified when done.')
 
     def do_command_run(self, query=None):
         command = query
