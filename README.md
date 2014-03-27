@@ -30,7 +30,7 @@ Dependencies
 
 - Alfred 2 with PowerPack
 - Python >= 2.7
-- Boot2Docker
+- [boot2docker](https://github.com/boot2docker/boot2docker)
 
 Links
 -----
