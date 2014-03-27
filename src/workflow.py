@@ -31,7 +31,7 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
         elif status == 'running':
             yield self.item(title='stop', description='Stop Boot2Docker',
                             autocomplete=True, arg='stop', match=query)
-        elif status == 'stopped':
+        elif status in ('stopped', 'aborted'):
             yield self.item(title='start', description='Start Boot2Docker',
                             autocomplete=True, arg='start', match=query)
 
@@ -76,6 +76,8 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             return 'running'
         elif ret.find('stopped') > -1:
             return 'stopped'
+        elif ret.find('aborted') > -1:
+            return 'aborted'
         else:
             return 'unknown'
 
@@ -85,6 +87,8 @@ class Boot2dockerWorkflow(alfred.AlfredWorkflow):
             self.write_text('Boot2Docker is running')
         elif status == 'stopped':
             self.write_text('Boot2Docker is stopped')
+        elif status == 'aborted':
+            self.write_text('Boot2Docker is aborted')
         else:
             self.write_text('Boot2Docker is in an unknown state')
 
