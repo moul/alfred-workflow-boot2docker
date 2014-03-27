@@ -34,6 +34,7 @@ Links
 
 - [Packal: Boot2docker](http://www.packal.org/workflow/boot2docker)
 - [Source Code](https://github.com/moul/alfred-workflow-boot2docker/)
+- [Official Forum Post](http://www.alfredforum.com/topic/4159-boot2docker-control-a-boot2docker-instance/?p=24951)
 
 License
 -------
