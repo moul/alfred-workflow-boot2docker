@@ -21,6 +21,9 @@ Commands
 
 - `boot2docker start`: Start instance
 - `boot2docker stop`: Stop instance
+- `boot2docker restart`: Restart instance
+- `boot2docker suspend`: Suspend instance
+- `boot2docker init`: Initialize boot2docker
 
 Dependencies
 ------------
