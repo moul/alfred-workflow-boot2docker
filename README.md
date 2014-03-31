@@ -14,7 +14,7 @@ Control [Boot2docker](https://github.com/boot2docker/boot2docker) from Alfred.
 Installation
 ------------
 
-[Download](https://github.com/moul/alfred-workflow-boot2docker/raw/master/Boot2docker.alfredworkflow) and import to Alfred
+[Download](https://github.com/moul/alfred-workflow-boot2docker/raw/master/Boot2Docker.alfredworkflow) and import to Alfred
 
 Commands
 --------
