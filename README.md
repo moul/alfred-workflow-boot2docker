@@ -5,7 +5,7 @@ Alfred Workflow: Boot2docker
 [![library users](https://sourcegraph.com/api/repos/github.com/moul/alfred-workflow-boot2docker/badges/library-users.png)](https://sourcegraph.com/github.com/moul/alfred-workflow-boot2docker)
 [![Total views](https://sourcegraph.com/api/repos/github.com/moul/alfred-workflow-boot2docker/counters/views.png)](https://sourcegraph.com/github.com/moul/alfred-workflow-boot2docker)
 [![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/moul/alfred-workflow-boot2docker/counters/views-24h.png)](https://sourcegraph.com/github.com/moul/alfred-workflow-boot2docker)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/moul/alfred-workflow-boot2docker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/moul/alfred-workflow-boot2docker/trend.png)](https://bitdeli.com/free "Bitdeli Badge") [![GuardRails badge](https://badges.production.guardrails.io/moul/alfred-workflow-boot2docker.svg)](https://www.guardrails.io)
 
 Boot2Docker Workflow for Alfred2
 
